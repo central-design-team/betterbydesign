@@ -43,7 +43,7 @@ export default function MediaSection() {
 
   return (
     <div ref={sectionRef} className="px-4 pb-4">
-    <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16 / 6' }}>
+    <div className="relative w-full overflow-hidden aspect-[4/3] sm:aspect-[6/4]">
       {IMAGES.map((image, i) => (
         <div
           key={i}
