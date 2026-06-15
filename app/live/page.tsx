@@ -26,12 +26,12 @@ export const metadata: Metadata = {
 export default function LivePage() {
   return (
     <>
-    <div className="min-h-screen bg-bbd-black flex flex-col text-white">
+    <div className="bg-bbd-black flex flex-col text-white">
 
       <LiveHeader />
 
       {/* Video area */}
-      <main id="main-content" className="flex-1 flex flex-col page-x pt-5 pb-6 sm:pb-24 gap-6 sm:gap-10">
+      <main id="main-content" className="flex flex-col page-x pt-5 pb-6 sm:pb-16 gap-6 sm:gap-10">
         {event.isLive ? (
           <div className="relative w-full aspect-video">
             <iframe
@@ -76,13 +76,10 @@ export default function LivePage() {
         </div>
       </main>
 
-      {/* Footer bar */}
-      <div
-        className="page-x flex items-center justify-between border-t border-white/10 text-white/60 flex-shrink-0"
-        style={{ height: '48px', fontSize: '12px' }}
-      >
+      {/* Footer */}
+      <footer className="page-x py-5 border-t border-white/10 text-white/60" style={{ fontSize: '12px' }}>
         <span>Better By Design 2026</span>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 mt-3">
           {partnerLogos.map((logo) => (
             <a
               key={logo.src}
@@ -103,7 +100,7 @@ export default function LivePage() {
             </a>
           ))}
         </div>
-      </div>
+      </footer>
 
     </div>
     <Suspense>

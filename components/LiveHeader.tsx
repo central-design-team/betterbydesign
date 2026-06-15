@@ -3,9 +3,16 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { navigation } from '@/content/site'
+
 import LiveShareButton from '@/components/LiveShareButton'
 
-const isClientNav = (href: string) => href.startsWith('/?')
+// Anchor links need / prefix to reach home page; query-string links strip the leading /
+const resolveHref = (href: string) => {
+  if (href.startsWith('#'))  return `/${href}`      // #ministers  → /#ministers
+  if (href.startsWith('/?')) return href.slice(1)   // /?panel=... → ?panel=...
+  return href
+}
+const isQueryNav = (href: string) => href.startsWith('/?')
 
 function BurgerIcon({ open }: { open: boolean }) {
   return (
@@ -17,7 +24,12 @@ function BurgerIcon({ open }: { open: boolean }) {
   )
 }
 
-export default function LiveHeader() {
+interface Props {
+  shareTitle?: string
+  shareText?: string
+}
+
+export default function LiveHeader({ shareTitle, shareText }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -26,14 +38,11 @@ export default function LiveHeader() {
         className="relative z-50 page-x flex items-center justify-between flex-shrink-0 border-b border-white/10"
         style={{ height: '56px' }}
       >
-        <p className="font-semibold text-white" style={{ fontSize: '15px' }}>
+        <Link href="/" className="font-semibold text-white no-underline" style={{ fontSize: '18px' }}>
           Better By Design 2026
-        </p>
+        </Link>
         <div className="flex items-center gap-5">
-          <LiveShareButton />
-          <Link href="/" className="text-white/70 hover:text-white transition-colors" style={{ fontSize: '13px' }}>
-            ← Back to site
-          </Link>
+          <LiveShareButton title={shareTitle} text={shareText} />
           <button
             className="flex items-center justify-center p-1 -mr-1"
             onClick={() => setMenuOpen((v) => !v)}
@@ -47,20 +56,18 @@ export default function LiveHeader() {
 
       {/* Mobile: full-screen overlay */}
       <div
-        className={[
-          'sm:hidden fixed inset-0 z-40 bg-bbd-black flex flex-col page-x',
-          'transition-opacity duration-200 ease-out',
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
-        ].join(' ')}
+        className={`sm:hidden fixed inset-0 z-40 bg-bbd-black flex flex-col page-x transition-opacity duration-200 ${
+          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
         style={{ paddingTop: '56px' }}
         aria-hidden={!menuOpen}
       >
         <ul className="flex flex-col list-none m-0 p-0 pt-10 gap-1" role="list">
           {navigation.map((item) => (
             <li key={item.label}>
-              {isClientNav(item.href) ? (
+              {isQueryNav(item.href) ? (
                 <Link
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   scroll={false}
                   onClick={() => setMenuOpen(false)}
                   className="block text-white no-underline font-normal py-3"
@@ -70,7 +77,7 @@ export default function LiveHeader() {
                 </Link>
               ) : (
                 <a
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   onClick={() => setMenuOpen(false)}
                   className="block text-white no-underline font-normal py-3"
                   style={{ fontSize: '24px' }}
@@ -84,34 +91,45 @@ export default function LiveHeader() {
         </ul>
       </div>
 
-      {/* Desktop: dropdown panel */}
+      {/* Desktop: slide-in drawer */}
       <div
-        className={[
-          'hidden sm:block fixed z-40 bg-bbd-black border-l border-b border-white/10 right-0',
-          'transition-all duration-200 ease-out',
-          menuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-2',
-        ].join(' ')}
-        style={{ top: '56px', minWidth: '220px' }}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation"
         aria-hidden={!menuOpen}
+        className={`hidden sm:flex fixed inset-y-0 right-0 z-50 flex-col w-64 bg-bbd-black transition-transform duration-300 ease-out ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
-        <ul className="flex flex-col list-none m-0 p-0 px-8 py-6 gap-1" role="list">
+        <div className="flex items-center justify-end px-6 flex-shrink-0" style={{ height: '56px' }}>
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+            className="text-white/40 hover:text-white transition-colors p-1 -mr-1"
+          >
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M14 4L4 14M4 4l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+        <ul className="flex flex-col list-none m-0 p-0 px-6 pt-2" role="list">
           {navigation.map((item) => (
             <li key={item.label}>
-              {isClientNav(item.href) ? (
+              {isQueryNav(item.href) ? (
                 <Link
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   scroll={false}
                   onClick={() => setMenuOpen(false)}
-                  className="block text-white no-underline font-normal py-2"
+                  className="block text-white no-underline font-normal py-4"
                   style={{ fontSize: '18px' }}
                 >
                   {item.label}
                 </Link>
               ) : (
                 <a
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   onClick={() => setMenuOpen(false)}
-                  className="block text-white no-underline font-normal py-2"
+                  className="block text-white no-underline font-normal py-4"
                   style={{ fontSize: '18px' }}
                   {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
@@ -123,13 +141,14 @@ export default function LiveHeader() {
         </ul>
       </div>
 
-      {/* Backdrop for desktop dropdown */}
-      {menuOpen && (
-        <div
-          className="hidden sm:block fixed inset-0 z-30"
-          onClick={() => setMenuOpen(false)}
-        />
-      )}
+      {/* Desktop backdrop */}
+      <div
+        aria-hidden="true"
+        onClick={() => setMenuOpen(false)}
+        className={`hidden sm:block fixed inset-0 z-40 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+          menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      />
     </>
   )
 }
