@@ -22,7 +22,7 @@ export const event = {
   // Replace liveStreamUrl with the YouTube embed URL for the stream.
   isLive: false,
   liveStreamUrl: 'https://www.youtube.com/embed/  ',
-  liveStartText: '10:30am, Thursday 18 June',
+  liveStartText: '9:30am, Thursday 18 June',
   liveThumbUrl: '/images/live-thumb.webp' as string | null,
 }
 

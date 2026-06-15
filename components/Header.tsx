@@ -4,6 +4,20 @@ import Link from 'next/link'
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { navigation, event } from '@/content/site'
+
+function WatchLiveLink({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <Link href="/live" className={`inline-flex items-center gap-2 no-underline font-normal ${className ?? ''}`} style={style}>
+      {event.isLive && (
+        <span className="relative flex h-2 w-2 flex-shrink-0">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+        </span>
+      )}
+      {event.isLive ? 'Watch Live' : 'Live Stream'}
+    </Link>
+  )
+}
 import { lockScroll, unlockScroll } from '@/lib/scroll-lock'
 
 const isClientNav = (href: string) => href.startsWith('/?')
@@ -152,10 +166,11 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden sm:block" aria-label="Primary navigation">
+          <nav className="hidden sm:flex items-center gap-6 md:gap-8" aria-label="Primary navigation">
             <Suspense fallback={null}>
               <NavItems />
             </Suspense>
+            <WatchLiveLink className="text-white" style={{ fontSize: '18px' }} />
           </nav>
 
           {/* Mobile burger */}
@@ -206,6 +221,9 @@ export default function Header() {
             </li>
           ))}
         </ul>
+        <div className="mt-4 border-t border-white/10 pt-6">
+          <WatchLiveLink className="text-white" style={{ fontSize: '24px' }} />
+        </div>
       </div>
     </>
   )
