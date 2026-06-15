@@ -40,7 +40,7 @@ export default function LiveBanner() {
   return (
     <Link
       href="/live"
-      className="fixed bottom-4 right-4 z-40 flex items-stretch bg-white overflow-hidden transition-opacity duration-150 no-underline"
+      className="fixed bottom-4 right-4 z-30 flex items-stretch bg-white overflow-hidden transition-opacity duration-150 no-underline"
       style={{
         width: '300px',
         borderRadius: '10px',
