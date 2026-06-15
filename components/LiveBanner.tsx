@@ -49,7 +49,7 @@ export default function LiveBanner() {
     >
       <Link
         href="/live"
-        className="relative flex items-stretch bg-white overflow-hidden no-underline"
+        className="relative flex items-stretch bg-white overflow-hidden no-underline w-full"
         style={{ borderRadius: '10px', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }}
       >
         <LiveCard onDismiss={dismiss} />
