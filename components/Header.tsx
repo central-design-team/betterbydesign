@@ -111,15 +111,9 @@ export default function Header() {
   // Lock body scroll when menu is open — compensate for scrollbar width to prevent layout shift
   useEffect(() => {
     if (menuOpen) {
-      const sw = window.innerWidth - document.documentElement.clientWidth
-      document.body.style.paddingRight = sw ? `${sw}px` : ''
       lockScroll()
     } else {
-      document.body.style.paddingRight = ''
       unlockScroll()
-    }
-    return () => {
-      document.body.style.paddingRight = ''
     }
   }, [menuOpen])
 
