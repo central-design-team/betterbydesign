@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import { event, partnerLogos } from '@/content/site'
 import Image from 'next/image'
+import { Suspense } from 'react'
 import LiveHeader from '@/components/LiveHeader'
+import Drawers from '@/components/Drawers'
+import AgendaList from '@/components/AgendaList'
 import { img } from '@/lib/img'
 
 export const metadata: Metadata = {
@@ -22,14 +25,15 @@ export const metadata: Metadata = {
 
 export default function LivePage() {
   return (
+    <>
     <div className="min-h-screen bg-bbd-black flex flex-col text-white">
 
       <LiveHeader />
 
       {/* Video area */}
-      <main id="main-content" className="flex-1 flex flex-col page-x pt-5 pb-24 gap-10">
+      <main id="main-content" className="flex-1 flex flex-col page-x pt-5 pb-6 sm:pb-24 gap-6 sm:gap-10">
         {event.isLive ? (
-          <div className="flex-1 relative">
+          <div className="relative w-full aspect-video">
             <iframe
               src={event.liveStreamUrl}
               title="Better By Design 2026 — Live Stream"
@@ -45,12 +49,12 @@ export default function LivePage() {
           >
             <div className="text-center">
               <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-3">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-white/30 ml-1" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-white/30 translate-x-[2px]" aria-hidden="true">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
               <p className="text-white/60" style={{ fontSize: '13px' }}>
-                Live stream — {event.date}
+                Live stream starts {event.liveStartText}
               </p>
             </div>
           </div>
@@ -60,6 +64,15 @@ export default function LivePage() {
         <div className="flex-shrink-0">
           <p className="text-white/80" style={{ fontSize: '13px' }}>{event.date}</p>
           <p className="text-white/60" style={{ fontSize: '12px' }}>{event.location}</p>
+        </div>
+
+        {/* Programme */}
+        <div className="flex-shrink-0 pt-4 border-t border-white/10">
+          <div className="text-[#00A432] uppercase tracking-widest mb-6" style={{ fontSize: '10px', fontWeight: 600 }}>
+            Programme
+          </div>
+          <AgendaList />
+          <div style={{ height: '48px' }} />
         </div>
       </main>
 
@@ -93,5 +106,9 @@ export default function LivePage() {
       </div>
 
     </div>
+    <Suspense>
+      <Drawers />
+    </Suspense>
+    </>
   )
 }

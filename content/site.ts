@@ -5,6 +5,8 @@
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
+export const siteUrl = 'https://betterbydesign.ie'
+
 export const event = {
   name: 'Better By Design',
   year: '2026',
@@ -19,12 +21,13 @@ export const event = {
   // Set isLive: true on the morning of the event to switch the site to live mode.
   // Replace liveStreamUrl with the YouTube embed URL for the stream.
   isLive: false,
-  liveStreamUrl: 'https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID',
+  liveStreamUrl: 'https://www.youtube.com/embed/  ',
+  liveStartText: '10:30am, Thursday 18 June',
+  liveThumbUrl: '/images/live-thumb.webp' as string | null,
 }
 
 export const navigation = [
   { label: 'Agenda',     href: '/?panel=agenda',       external: false },
-  { label: 'Ministers',  href: '#ministers',            external: false },
   { label: 'Keynotes',   href: '#keynotes',             external: false },
   { label: 'Themes',     href: '#themes',               external: false },
   { label: 'Panellists', href: '#panellists',           external: false },
