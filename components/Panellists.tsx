@@ -8,7 +8,7 @@ function PanellistCard({ slug, name, role, organisation, image, aspectClass = 'a
   const hasBio = !!speakerProfiles[slug]?.bio
 
   return (
-    <Link href={`/speakers/${slug}`} scroll={false} className="group flex flex-col">
+    <Link href={`/?panel=speaker&id=${slug}`} scroll={false} className="group flex flex-col">
       {/* Image */}
       <div className="relative mb-4 flex-shrink-0 w-full sm:w-[70%]">
         {hasBio && (
