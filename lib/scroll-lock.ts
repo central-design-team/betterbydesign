@@ -13,7 +13,8 @@ export function lockScroll() {
 }
 
 export function unlockScroll() {
-  count = Math.max(0, count - 1)
+  if (count <= 0) return
+  count--
   if (count === 0) {
     const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10))
     document.documentElement.style.overflow = ''
