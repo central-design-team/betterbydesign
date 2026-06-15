@@ -40,9 +40,8 @@ export default function LiveBanner() {
   return (
     <Link
       href="/live"
-      className="fixed bottom-4 right-4 z-30 flex items-stretch bg-white overflow-hidden transition-opacity duration-150 no-underline"
+      className="fixed bottom-4 left-[5vw] right-[5vw] z-30 flex items-stretch bg-white overflow-hidden no-underline sm:left-auto sm:right-4 sm:w-[300px]"
       style={{
-        width: '300px',
         borderRadius: '10px',
         boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
         opacity: opacity * (entered ? 1 : 0),
@@ -51,8 +50,8 @@ export default function LiveBanner() {
         pointerEvents: opacity < 0.05 ? 'none' : 'auto',
       }}
     >
-      {/* 16:9 thumbnail — replace bg-black with an Image when liveThumbUrl is set */}
-      <div className="relative flex-shrink-0 self-stretch bg-black" style={{ width: '120px' }}>
+      {/* Thumbnail */}
+      <div className="relative flex-shrink-0 self-stretch bg-black w-[36%] sm:w-[120px]">
         {event.liveThumbUrl && (
           <Image
             src={img(event.liveThumbUrl)}
