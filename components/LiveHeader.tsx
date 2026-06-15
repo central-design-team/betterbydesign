@@ -39,7 +39,7 @@ export default function LiveHeader({ shareTitle, shareText }: Props) {
         style={{ height: '56px' }}
       >
         <Link href="/" className="font-semibold text-white no-underline" style={{ fontSize: '18px' }}>
-          Better By Design 2026
+          Better By Design <span className="font-normal">2026</span>
         </Link>
         <div className="flex items-center gap-5">
           <LiveShareButton title={shareTitle} text={shareText} />
