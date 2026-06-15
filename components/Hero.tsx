@@ -75,24 +75,12 @@ export default function Hero() {
 
           {/* Tickets / Watch Live — third on mobile; left col row 2 on tablet/desktop */}
           <div className="order-3 sm:col-start-1 sm:row-start-2 lg:col-span-3 lg:col-start-1 lg:row-start-2 flex items-end hero-animate hero-animate-3">
-            {event.isLive ? (
-              <Link
-                href="/live"
-                className="group inline-flex items-center gap-2 underline decoration-1 underline-offset-[0.15em] hover:decoration-2 transition-all duration-200 ease-out w-fit"
-              >
-                Watch Live
-              </Link>
-            ) : (
-              <a
-                href={event.ticketsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 underline decoration-1 underline-offset-[0.15em] hover:decoration-2 transition-all duration-200 ease-out w-fit"
-              >
-                Tickets
-                <ExternalArrow />
-              </a>
-            )}
+            <Link
+              href="/live"
+              className="group inline-flex items-center gap-2 underline decoration-1 underline-offset-[0.15em] hover:decoration-2 transition-all duration-200 ease-out w-fit"
+            >
+              Watch Live
+            </Link>
           </div>
 
           {/* Keynotes CTA — fourth on mobile; right col row 2 on tablet; right 4 cols row 2 on desktop */}
