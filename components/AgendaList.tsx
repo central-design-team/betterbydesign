@@ -66,9 +66,9 @@ function AgendaRow({ item, showImages }: { item: AgendaItem; showImages: boolean
   const useGrid      = isPanel || speakerCount >= 2
 
   return (
-    <div className="flex gap-5 md:gap-8 py-6 border-b border-white/10 last:border-0">
+    <div className="flex items-baseline gap-5 md:gap-8 py-6 border-b border-white/10 last:border-0">
       {/* Time */}
-      <div className="flex-shrink-0 text-[#00A432] tabular-nums text-[10px] font-semibold pt-[3px] w-[42px]">
+      <div className="flex-shrink-0 text-[#00A432] tabular-nums text-[10px] font-semibold w-[42px]">
         {item.time}
       </div>
 
