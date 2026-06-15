@@ -59,6 +59,10 @@ next-env.d.ts
 *.png
 public/images/speakers/
 
+# claude code & local scripts
+.claude/
+scripts/
+
 # allow app icons
 !app/icon.png
 !app/apple-icon.png
