@@ -39,10 +39,10 @@ function SpeakerLink({ slug, showImage }: { slug: string; showImage: boolean }) 
           />
         </div>
       )}
-      <span className={`block font-semibold text-white text-[14px] md:text-[16px] leading-snug${hasBio ? ' group-hover:text-[#00A432] transition-colors duration-150' : ''}`}>
+      <span className={`block font-semibold text-white text-[15px] md:text-[17px] leading-snug${hasBio ? ' group-hover:text-[#00A432] transition-colors duration-150' : ''}`}>
         {profile.name}
       </span>
-      <span className={`block text-[11px] md:text-[12px] leading-snug mt-0.5 transition-colors duration-150 ${hasBio ? 'text-white/60 group-hover:text-white/80' : 'text-white/60'}`}>
+      <span className={`block text-[12px] md:text-[13px] leading-snug mt-0.5 transition-colors duration-150 ${hasBio ? 'text-white/60 group-hover:text-white/80' : 'text-white/60'}`}>
         {profile.role}{profile.organisation ? `, ${profile.organisation}` : ''}
       </span>
     </>
@@ -68,7 +68,7 @@ function AgendaRow({ item, showImages }: { item: AgendaItem; showImages: boolean
   return (
     <div className="flex items-baseline gap-5 md:gap-8 py-6 border-b border-white/10 last:border-0">
       {/* Time */}
-      <div className="flex-shrink-0 text-[#00A432] tabular-nums text-[10px] font-semibold w-[42px]">
+      <div className="flex-shrink-0 text-[#00A432] tabular-nums text-[12px] font-semibold w-[42px]">
         {item.time}
       </div>
 
@@ -82,13 +82,13 @@ function AgendaRow({ item, showImages }: { item: AgendaItem; showImages: boolean
 
         {!isLabelOnly && (
           <>
-            <div className="font-semibold text-white leading-snug" style={{ fontSize: isPanel ? '18px' : '15px' }}>
+            <div className="font-semibold text-white leading-snug" style={{ fontSize: isPanel ? '20px' : '17px' }}>
               {item.title}
             </div>
             {item.subtitle && (
               <div
                 className={`mt-0.5 ${isSimple ? 'text-white/60' : 'text-white'}`}
-                style={{ fontSize: isPanel ? '18px' : '13px', fontWeight: 400 }}
+                style={{ fontSize: isPanel ? '20px' : '15px', fontWeight: 400 }}
               >
                 {item.subtitle}
               </div>
@@ -117,7 +117,7 @@ function AgendaRow({ item, showImages }: { item: AgendaItem; showImages: boolean
         )}
 
         {item.speakers && item.speakers.length > 0 && (
-          <div className={`${isLabelOnly ? '' : 'mt-4'} ${useGrid ? 'grid grid-cols-2 gap-x-6 gap-y-4' : 'flex flex-col gap-2'}`}>
+          <div className={`mt-4 ${useGrid ? 'grid grid-cols-2 gap-x-6 gap-y-4' : 'flex flex-col gap-2'}`}>
             {item.speakers.map((slug) => (
               <SpeakerLink key={slug} slug={slug} showImage={showImages} />
             ))}
