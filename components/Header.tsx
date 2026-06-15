@@ -1,11 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { navigation, event } from '@/content/site'
-import { img } from '@/lib/img'
+import LiveCard from '@/components/LiveCard'
 
 import { lockScroll, unlockScroll } from '@/lib/scroll-lock'
 
@@ -224,46 +223,14 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <div className="mt-auto pt-6 pb-8">
+        <div className="mt-auto pt-6 pb-8 flex justify-center">
           <Link
             href="/live"
             onClick={() => setMenuOpen(false)}
-            className="flex items-stretch bg-white overflow-hidden no-underline"
-            style={{ borderRadius: '10px' }}
+            className="relative flex items-stretch bg-white overflow-hidden no-underline w-72"
+            style={{ borderRadius: '10px', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }}
           >
-            <div className="relative flex-shrink-0 self-stretch bg-black" style={{ width: '100px' }}>
-              {event.liveThumbUrl && (
-                <Image src={img(event.liveThumbUrl)} alt="Live stream thumbnail" fill className="object-cover" />
-              )}
-              {event.isLive && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex items-center justify-center rounded-full border border-white/30" style={{ width: '28px', height: '28px' }}>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="flex-1 flex flex-col justify-center px-3 py-3">
-              {event.isLive ? (
-                <>
-                  <p className="font-semibold text-bbd-black leading-tight" style={{ fontSize: '13px' }}>Watch Live</p>
-                  <p className="mt-1 text-bbd-black/60 leading-snug" style={{ fontSize: '11px' }}>Better By Design 2026 is live now.</p>
-                  <span className="mt-2 inline-flex items-center gap-1 font-medium text-bbd-black/70" style={{ fontSize: '11px' }}>
-                    Watch now
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
-                  </span>
-                </>
-              ) : (
-                <>
-                  <p className="font-semibold text-bbd-black leading-tight" style={{ fontSize: '13px' }}>Live Stream</p>
-                  <p className="mt-1 text-bbd-black/60 leading-snug" style={{ fontSize: '11px' }}>Starts {event.liveStartText}</p>
-                  <span className="mt-2 inline-flex items-center gap-1 font-medium text-bbd-black/70" style={{ fontSize: '11px' }}>
-                    Watch on the day
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
-                  </span>
-                </>
-              )}
-            </div>
+            <LiveCard />
           </Link>
         </div>
       </div>
