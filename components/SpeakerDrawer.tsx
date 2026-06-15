@@ -35,8 +35,17 @@ export default function SpeakerDrawer() {
   const isOpenRef = useRef(false)
 
   const handleClose = useCallback(() => {
-    router.push(pathname ?? '/', { scroll: false })
-  }, [router, pathname])
+    if (isSideBySide) {
+      // Return to agenda panel without the speaker
+      router.push(`${pathname}?panel=agenda`, { scroll: false })
+    } else if (pathSlug) {
+      // On a /speakers/slug path — go home
+      router.push('/', { scroll: false })
+    } else {
+      // Standalone panel — strip query params
+      router.push(pathname ?? '/', { scroll: false })
+    }
+  }, [router, pathname, isSideBySide, pathSlug])
 
   const handleShare = useCallback(async (profile: (typeof speakerProfiles)[string]) => {
     const slug = currentSlug
@@ -108,7 +117,7 @@ export default function SpeakerDrawer() {
   }, [open, handleClose])
 
   useEffect(() => {
-    if (open) panelRef.current?.focus()
+    if (open) panelRef.current?.focus({ preventScroll: true })
   }, [open])
 
   if (!mounted) return null

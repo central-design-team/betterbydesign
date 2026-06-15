@@ -48,7 +48,7 @@ export default function AgendaDrawer() {
   }, [open, handleClose])
 
   useEffect(() => {
-    if (open) panelRef.current?.focus()
+    if (open) panelRef.current?.focus({ preventScroll: true })
   }, [open])
 
   if (!mounted) return null

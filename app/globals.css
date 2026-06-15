@@ -32,7 +32,7 @@ html {
 /* ─── Typography ─────────────────────────────────────────────────── */
 
 .fluid-display {
-  font-size: clamp(3rem, var(--fluid-font-size, 13.5cqw), 12rem);
+  font-size: clamp(2rem, var(--fluid-font-size, 12cqw), 12rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -40,7 +40,7 @@ html {
 }
 
 .fluid-display-light {
-  font-size: clamp(3rem, var(--fluid-font-size, 13.5cqw), 12rem);
+  font-size: clamp(2rem, var(--fluid-font-size, 12cqw), 12rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.03em;
