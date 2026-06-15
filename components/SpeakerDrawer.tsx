@@ -35,8 +35,8 @@ export default function SpeakerDrawer() {
   const isOpenRef = useRef(false)
 
   const handleClose = useCallback(() => {
-    router.push('/', { scroll: false })
-  }, [router])
+    router.push(pathname ?? '/', { scroll: false })
+  }, [router, pathname])
 
   const handleShare = useCallback(async (profile: (typeof speakerProfiles)[string]) => {
     const slug = currentSlug

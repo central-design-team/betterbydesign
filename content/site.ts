@@ -60,6 +60,7 @@ export interface SpeakerProfile {
   bio?: string
   image?: string | null
   linkedin?: string
+  avatarPosition?: string
 }
 
 export const speakerProfiles: Record<string, SpeakerProfile> = {
@@ -87,6 +88,7 @@ export const speakerProfiles: Record<string, SpeakerProfile> = {
     role: 'Minister for Public Expenditure, Infrastructure, Public Service Reform and Digitalisation',
     organisation: '',
     image: '/images/jack-chambers.webp',
+    avatarPosition: 'center 15%',
   },
   'patrick-odonovan-td': {
     slug: 'patrick-odonovan-td',
@@ -94,6 +96,7 @@ export const speakerProfiles: Record<string, SpeakerProfile> = {
     role: 'Minister for Culture, Communications and Sport',
     organisation: '',
     image: '/images/patrick-o-donovan.webp',
+    avatarPosition: 'center 15%',
   },
   'frank-feighan-td': {
     slug: 'frank-feighan-td',
@@ -101,6 +104,7 @@ export const speakerProfiles: Record<string, SpeakerProfile> = {
     role: 'Minister of State',
     organisation: 'Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation',
     image: '/images/frank-td.webp',
+    avatarPosition: 'center 15%',
   },
   'trevor-vaugh': {
     slug: 'trevor-vaugh',
@@ -171,6 +175,7 @@ export const speakerProfiles: Record<string, SpeakerProfile> = {
     role: 'Secretary General',
     organisation: 'Department of Social Protection',
     image: '/images/john-mckeon.webp',
+    avatarPosition: 'center 15%',
     bio: 'John McKeon joined the Department of Social Protection in October 2010 and was appointed Secretary General in July 2017.\n\nPrior to his appointment he held Assistant Secretary positions with responsibility for activation policy, the development and implementation of the Pathways to Work programme, and the modernisation of the department\'s public office (Intreo) services. He also held responsibility for staff relations and Finance, Legislation and PRSI policy.\n\nPrior to joining the department he worked for the Department of Post and Telegraphs / Telecom Éireann / Eircom over a period of 31 years most latterly as Managing Director of eircom Wholesale.',
   },
   'angela-denning': {
@@ -233,6 +238,7 @@ export const speakerProfiles: Record<string, SpeakerProfile> = {
     role: 'City Innovation Broker',
     organisation: 'Belfast City Council',
     image: '/images/brenda.webp',
+    avatarPosition: 'center 15%',
     linkedin: 'https://www.linkedin.com/in/brenda-murphy-20906421',
     bio: 'Brenda Murphy is an experienced innovation, stakeholder engagement, and strategic development professional with more than 25 years\' experience across local government, economic development, tourism, utilities, and customer services. She has a strong track record of building partnerships between public, private, and community stakeholders, leading complex projects, and delivering initiatives that drive innovation, growth, and customer-focused outcomes.\n\nCurrently Innovation Broker at Belfast City Council, Brenda supports business innovation and collaboration across the region. Her career includes senior roles with the Department for the Economy and Tourism Northern Ireland, where she led tourism development, visitor communications, digital platforms, operational transformation, and stakeholder engagement programmes.',
   },

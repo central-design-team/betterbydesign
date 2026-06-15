@@ -34,7 +34,7 @@ function SpeakerLink({ slug, showImage }: { slug: string; showImage: boolean }) 
             alt={profile.name}
             fill
             className="object-cover"
-            style={{ filter: 'grayscale(100%) sepia(50%) hue-rotate(5deg) saturate(60%) brightness(90%)' }}
+            style={{ filter: 'grayscale(100%) sepia(50%) hue-rotate(5deg) saturate(60%) brightness(90%)', objectPosition: profile.avatarPosition ?? 'center' }}
             unoptimized
           />
         </div>
