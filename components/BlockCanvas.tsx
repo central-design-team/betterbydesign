@@ -57,7 +57,8 @@ interface Block {
 function buildBlocks(variant: Variant, W: number, H: number): Block[] {
   return variant.map(([xf, yf, wf, hf, color]) => {
     const x = xf * W, y = yf * H
-    const w = wf * W, h = hf * H
+    const h = hf * H
+    const w = Math.max(wf * W, h) // enforce minimum 1:1 aspect ratio per block
     const cx = x + w / 2, cy = y + h / 2
     const distL = cx, distR = W - cx, distT = cy, distB = H - cy
     const min = Math.min(distL, distR, distT, distB)

@@ -4,7 +4,7 @@ import { img } from '@/lib/img'
 
 export default function Partners() {
   return (
-    <section className="section-y" aria-labelledby="partners-heading">
+    <section id="partners" className="section-y" aria-labelledby="partners-heading">
       <div className="page-grid items-start">
         <div className="col-span-1 md:col-span-1 lg:col-span-3">
           <h2

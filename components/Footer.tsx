@@ -40,7 +40,7 @@ const iconMap = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-bbd-black" role="contentinfo">
+    <footer id="footer" className="bg-white text-bbd-black" role="contentinfo">
 
       {/* Non-flush black rule */}
       <div className="page-x pt-4">

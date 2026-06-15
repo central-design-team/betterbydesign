@@ -42,8 +42,8 @@ export default function MediaSection() {
   }, [started])
 
   return (
-    <div ref={sectionRef} className="px-4 pb-4">
-    <div className="relative w-full overflow-hidden aspect-[4/3] sm:aspect-[6/4]">
+    <div id="media" ref={sectionRef} className="px-4 pb-4">
+    <div className="relative w-full overflow-hidden aspect-[4/3] sm:aspect-[6/4] lg:aspect-[16/9] lg:max-h-[80vh]">
       {IMAGES.map((image, i) => (
         <div
           key={i}

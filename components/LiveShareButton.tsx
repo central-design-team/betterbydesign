@@ -2,16 +2,20 @@
 
 import { useState } from 'react'
 
-export default function LiveShareButton() {
+interface Props {
+  title?: string
+  text?: string
+}
+
+export default function LiveShareButton({
+  title = 'Better By Design 2026 — Live Stream',
+  text  = 'Watch the Better By Design 2026 conference live — Public Service Design, The Lighthouse, Dublin.',
+}: Props) {
   const [copied, setCopied] = useState(false)
 
   const handleShare = async () => {
     const url = window.location.href
-    const shareData = {
-      title: 'Better By Design 2026 — Live Stream',
-      text: 'Watch the Better By Design 2026 conference live — Public Service Design, The Lighthouse, Dublin.',
-      url,
-    }
+    const shareData = { title, text, url }
 
     if (navigator.share && navigator.canShare?.(shareData)) {
       try {

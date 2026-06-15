@@ -136,6 +136,7 @@ export default function Header() {
   return (
     <>
       <header
+        id="site-header"
         className={`fixed top-0 left-0 right-0 z-50 bg-bbd-black transition-transform duration-300 ${!navVisible && !menuOpen ? '-translate-y-full sm:translate-y-0' : 'translate-y-0'}`}
         style={{ height: '56px' }}
         role="banner"
@@ -172,6 +173,7 @@ export default function Header() {
       {/* Mobile menu overlay */}
       {menuOpen && (
         <div
+          id="mobile-menu"
           className="sm:hidden fixed inset-0 z-40 bg-bbd-black flex flex-col page-x"
           style={{ paddingTop: '56px' }}
         >

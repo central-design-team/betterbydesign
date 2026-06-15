@@ -48,6 +48,7 @@ function DownArrow() {
 export default function Hero() {
   return (
     <section
+      id="hero"
       className="flex flex-col"
       style={{ height: '100svh', paddingTop: '56px' }}
       aria-label="Conference introduction"
@@ -109,7 +110,7 @@ export default function Hero() {
       </div>
 
       {/* Canvas — capped at 50vh on mobile with auto top-margin for breathing room; fills remaining on sm+ */}
-      <div className="flex-1 max-h-[40svh] sm:max-h-none w-full overflow-hidden">
+      <div id="hero-graphic" className="flex-1 max-h-[40svh] sm:max-h-none w-full overflow-hidden">
         <BlockCanvas style={{ width: '100%', height: '100%' }} />
       </div>
     </section>
