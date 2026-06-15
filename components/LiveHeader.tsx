@@ -18,7 +18,7 @@ function BurgerIcon({ open }: { open: boolean }) {
   return (
     <span className="flex flex-col gap-[5px] w-5" aria-hidden="true">
       <span className={`block h-[2px] w-full bg-white origin-center transition-transform duration-200 ease-out ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
-      <span className={`block h-[2px] w-full bg-white transition-opacity duration-150 ease-out ${open ? 'opacity-0' : 'opacity-100'}`} />
+      <span className={`block h-[2px] w-full bg-white ${open ? 'opacity-0' : 'opacity-100 transition-opacity duration-150 ease-out'}`} />
       <span className={`block h-[2px] w-full bg-white origin-center transition-transform duration-200 ease-out ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
     </span>
   )

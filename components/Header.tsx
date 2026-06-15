@@ -74,7 +74,7 @@ function BurgerIcon({ open }: { open: boolean }) {
   return (
     <span className="flex flex-col gap-[5px] w-5" aria-hidden="true">
       <span className={`block h-[2px] w-full bg-white origin-center transition-transform duration-200 ease-out ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
-      <span className={`block h-[2px] w-full bg-white transition-opacity duration-150 ease-out ${open ? 'opacity-0' : 'opacity-100'}`} />
+      <span className={`block h-[2px] w-full bg-white ${open ? 'opacity-0' : 'opacity-100 transition-opacity duration-150 ease-out'}`} />
       <span className={`block h-[2px] w-full bg-white origin-center transition-transform duration-200 ease-out ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
     </span>
   )
@@ -171,41 +171,42 @@ export default function Header() {
       </header>
 
       {/* Mobile menu overlay */}
-      {menuOpen && (
-        <div
-          id="mobile-menu"
-          className="sm:hidden fixed inset-0 z-40 bg-bbd-black flex flex-col page-x"
-          style={{ paddingTop: '56px' }}
-        >
-          <ul className="flex flex-col list-none m-0 p-0 pt-10 gap-1" role="list">
-            {navigation.map((item) => (
-              <li key={item.label}>
-                {isClientNav(item.href) ? (
-                  <Link
-                    href={item.href}
-                    scroll={false}
-                    onClick={() => setTimeout(() => setMenuOpen(false), 350)}
-                    className="block text-white no-underline font-normal py-3"
-                    style={{ fontSize: '24px' }}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <a
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block text-white no-underline font-normal py-3"
-                    style={{ fontSize: '24px' }}
-                    {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    {item.label}
-                  </a>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div
+        id="mobile-menu"
+        className={`sm:hidden fixed inset-0 z-40 bg-bbd-black flex flex-col page-x transition-opacity duration-200 ${
+          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{ paddingTop: '56px' }}
+        aria-hidden={!menuOpen}
+      >
+        <ul className="flex flex-col list-none m-0 p-0 pt-10 gap-1" role="list">
+          {navigation.map((item) => (
+            <li key={item.label}>
+              {isClientNav(item.href) ? (
+                <Link
+                  href={item.href}
+                  scroll={false}
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-white no-underline font-normal py-3"
+                  style={{ fontSize: '24px' }}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-white no-underline font-normal py-3"
+                  style={{ fontSize: '24px' }}
+                  {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   )
 }
