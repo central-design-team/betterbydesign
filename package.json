@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@napi-rs/canvas": "^1.0.0",
     "@plausible-analytics/tracker": "^0.4.5",
     "@types/qrcode": "^1.5.6",
     "next": "15.1.0",
