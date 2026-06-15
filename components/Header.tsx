@@ -184,7 +184,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     scroll={false}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => setTimeout(() => setMenuOpen(false), 350)}
                     className="block text-white no-underline font-normal py-3"
                     style={{ fontSize: '24px' }}
                   >

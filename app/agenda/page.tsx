@@ -32,9 +32,9 @@ export default function AgendaPage() {
       </main>
 
       {/* Footer */}
-      <footer className="flex-shrink-0 page-x py-5 border-t border-white/10 text-white/40" style={{ fontSize: '12px' }}>
+      <footer className="flex-shrink-0 page-x py-5 border-t border-white/10 text-white/40 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ fontSize: '12px' }}>
         <span>{event.name} {event.year}</span>
-        <div className="flex flex-wrap items-center gap-4 mt-3">
+        <div className="flex flex-wrap items-center gap-4">
           {partnerLogos.map((logo) => (
             <a
               key={logo.src}

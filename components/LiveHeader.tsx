@@ -69,7 +69,7 @@ export default function LiveHeader({ shareTitle, shareText }: Props) {
                 <Link
                   href={resolveHref(item.href)}
                   scroll={false}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => setTimeout(() => setMenuOpen(false), 350)}
                   className="block text-white no-underline font-normal py-3"
                   style={{ fontSize: '24px' }}
                 >

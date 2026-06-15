@@ -87,8 +87,8 @@ export default async function DownloadsPage() {
 
       {/* Footer */}
       <footer
-        className="flex-shrink-0 page-x flex items-center justify-between border-t border-white/10 text-white/40"
-        style={{ height: '48px', fontSize: '12px' }}
+        className="flex-shrink-0 page-x py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-white/10 text-white/40"
+        style={{ fontSize: '12px' }}
       >
         <span>{event.name} {event.year}</span>
         <div className="flex items-center gap-4">

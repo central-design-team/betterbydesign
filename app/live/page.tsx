@@ -77,9 +77,9 @@ export default function LivePage() {
       </main>
 
       {/* Footer */}
-      <footer className="page-x py-5 border-t border-white/10 text-white/60" style={{ fontSize: '12px' }}>
+      <footer className="page-x py-5 border-t border-white/10 text-white/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ fontSize: '12px' }}>
         <span>Better By Design 2026</span>
-        <div className="flex flex-wrap items-center gap-4 mt-3">
+        <div className="flex flex-wrap items-center gap-4">
           {partnerLogos.map((logo) => (
             <a
               key={logo.src}
