@@ -96,7 +96,7 @@ export default function AgendaDrawer() {
 
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto px-6 md:px-8">
-          <AgendaList />
+          <AgendaList showImages />
           <div style={{ height: '48px' }} />
         </div>
       </div>

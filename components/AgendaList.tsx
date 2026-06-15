@@ -28,7 +28,7 @@ function SpeakerLink({ slug, showImage }: { slug: string; showImage: boolean }) 
   const inner = (
     <>
       {showImage && profile.image && (
-        <div className="relative w-10 aspect-[11/16] overflow-hidden mb-2 flex-shrink-0" style={{ backgroundColor: '#EEECEA' }}>
+        <div className="relative w-12 h-12 rounded-full overflow-hidden mb-2 flex-shrink-0" style={{ backgroundColor: '#EEECEA' }}>
           <Image
             src={img(profile.image)}
             alt={profile.name}
