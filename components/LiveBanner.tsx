@@ -39,7 +39,7 @@ export default function LiveBanner() {
 
   return (
     <div
-      className="fixed left-1/2 -translate-x-1/2 z-30 w-72 sm:left-auto sm:right-4 sm:translate-x-0 sm:w-[300px]"
+      className="fixed left-4 right-4 z-30 sm:left-auto sm:right-4 sm:w-[300px]"
       style={{
         bottom: entered ? '1rem' : 'calc(1rem - 10px)',
         opacity: opacity * (entered ? 1 : 0),
