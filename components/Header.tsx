@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { navigation, event } from '@/content/site'
+import { img } from '@/lib/img'
 
 import { lockScroll, unlockScroll } from '@/lib/scroll-lock'
 
@@ -230,6 +232,9 @@ export default function Header() {
             style={{ borderRadius: '10px' }}
           >
             <div className="relative flex-shrink-0 self-stretch bg-black" style={{ width: '100px' }}>
+              {event.liveThumbUrl && (
+                <Image src={img(event.liveThumbUrl)} alt="Live stream thumbnail" fill className="object-cover" />
+              )}
               {event.isLive && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="flex items-center justify-center rounded-full border border-white/30" style={{ width: '28px', height: '28px' }}>
