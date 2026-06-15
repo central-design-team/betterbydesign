@@ -97,22 +97,11 @@ function AgendaRow({ item, showImages }: { item: AgendaItem; showImages: boolean
         )}
 
         {item.moderator && speakerProfiles[item.moderator] && (
-          <div className="mt-3 text-white/60" style={{ fontSize: '12px' }}>
-            Moderator:{' '}
-            {speakerProfiles[item.moderator]?.bio ? (
-              <Link
-                href={`/speakers/${item.moderator}`}
-                scroll={false}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                {speakerProfiles[item.moderator]?.name}
-              </Link>
-            ) : (
-              <span className="text-white/60">{speakerProfiles[item.moderator]?.name}</span>
-            )}
-            {speakerProfiles[item.moderator]?.role
-              ? `, ${speakerProfiles[item.moderator]?.role}`
-              : ''}
+          <div className="mt-4">
+            <div className="text-[#00A432] uppercase tracking-widest mb-3" style={{ fontSize: '10px', fontWeight: 600 }}>
+              Moderator
+            </div>
+            <SpeakerLink slug={item.moderator} showImage={showImages} />
           </div>
         )}
 
