@@ -194,7 +194,7 @@ export const speakerProfiles: Record<string, SpeakerProfile> = {
     organisation: 'Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation',
     image: '/images/marianne.webp',
     linkedin: 'https://www.linkedin.com/in/marianne-cassidy-b05a0b4/',
-    bio: 'Marianne leads the Public Service Transformation Division. She is responsible for advancing public service transformation across government, including implementation of Civil Service Renewal 2030 and shaping the next phase of public service reform. Marianne previously held senior roles with the Courts Service, the Ombudsman for Children\'s Office and the National Transport Authority.',
+    bio: 'Marianne leads the Public Service Transformation Division. She is responsible for advancing public service transformation across government, including implementation of Better Public Services Renewal 2030 and shaping the next phase of public service reform. Marianne previously held senior roles with the Courts Service, the Ombudsman for Children\'s Office and the National Transport Authority.',
   },
   'dr-caoimhe-mc-mahon': {
     slug: 'dr-caoimhe-mc-mahon',
