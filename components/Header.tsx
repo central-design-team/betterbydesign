@@ -13,8 +13,8 @@ function WatchLiveLink({ className, style }: { className?: string; style?: React
     <Link href="/live" className={`inline-flex items-center gap-2 no-underline font-normal ${className ?? ''}`} style={style}>
       {event.isLive && (
         <span className="relative flex h-2 w-2 flex-shrink-0">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A432] opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A432]" />
         </span>
       )}
       {event.isLive ? 'Watch Live' : 'Live Stream'}
