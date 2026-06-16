@@ -23,6 +23,7 @@ export const event = {
   isLive: true,
   liveStreamUrl: 'https://www.youtube.com/embed/00azxsjlGcs',
   liveStartText: '9:30am, Thursday 18 June',
+  liveStartTime: '2026-06-18T09:30:00+01:00',
   liveThumbUrl: '/images/live-thumb.webp' as string | null,
 }
 
