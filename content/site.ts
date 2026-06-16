@@ -20,8 +20,8 @@ export const event = {
   // ─── Live stream ───────────────────────────────────────────────
   // Set isLive: true on the morning of the event to switch the site to live mode.
   // Replace liveStreamUrl with the YouTube embed URL for the stream.
-  isLive: false,
-  liveStreamUrl: 'https://www.youtube.com/embed/  ',
+  isLive: true,
+  liveStreamUrl: 'https://www.youtube.com/embed/00azxsjlGcs',
   liveStartText: '9:30am, Thursday 18 June',
   liveThumbUrl: '/images/live-thumb.webp' as string | null,
 }
