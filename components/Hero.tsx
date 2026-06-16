@@ -79,6 +79,12 @@ export default function Hero() {
               href="/live"
               className="group inline-flex items-center gap-2 underline decoration-1 underline-offset-[0.15em] hover:decoration-2 transition-all duration-200 ease-out w-fit"
             >
+              {event.isLive && (
+                <span className="relative flex h-2 w-2 flex-shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00A432] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A432]" />
+                </span>
+              )}
               Watch Live
             </Link>
           </div>
