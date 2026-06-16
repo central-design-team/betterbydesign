@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { event } from '@/content/site'
 import { img } from '@/lib/img'
@@ -7,6 +10,17 @@ interface Props {
 }
 
 export default function LiveCard({ onDismiss }: Props) {
+  const [isActuallyLive, setIsActuallyLive] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsActuallyLive(new Date() >= new Date(event.liveStartTime))
+    check()
+    const t = setInterval(check, 30_000)
+    return () => clearInterval(t)
+  }, [])
+
+  const showLive = event.isLive && isActuallyLive
+
   return (
     <>
       {/* Thumbnail */}
@@ -19,7 +33,7 @@ export default function LiveCard({ onDismiss }: Props) {
             className="object-cover"
           />
         )}
-        {event.isLive && (
+        {showLive && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="flex items-center justify-center rounded-full border border-white/30 w-8 h-8 sm:w-7 sm:h-7">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="white" aria-hidden="true">
@@ -32,7 +46,7 @@ export default function LiveCard({ onDismiss }: Props) {
 
       {/* Content */}
       <div className={`flex-1 flex flex-col justify-center px-4 py-4 sm:px-3 sm:py-3 ${onDismiss ? 'pr-8 sm:pr-7' : ''}`}>
-        {event.isLive ? (
+        {showLive ? (
           <>
             <p className="font-semibold text-bbd-black leading-tight text-[15px] sm:text-[13px]">Watch Live</p>
             <p className="mt-1 text-bbd-black/60 leading-snug text-[13px] sm:text-[11px]">Better By Design 2026 is live now.</p>
