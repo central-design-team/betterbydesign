@@ -64,6 +64,7 @@ export default function LivePage() {
         <div className="flex-shrink-0">
           <p className="text-white/80" style={{ fontSize: '13px' }}>{event.date}</p>
           <p className="text-white/60" style={{ fontSize: '12px' }}>{event.location}</p>
+          <p className="text-white/60 mt-1" style={{ fontSize: '12px' }}>Live stream starts {event.liveStartText}</p>
         </div>
 
         {/* Programme */}
