@@ -3,19 +3,25 @@ import { event } from '@/content/site'
 import LiveHeader from '@/components/LiveHeader'
 import JotformEmbed from '@/components/JotformEmbed'
 
+const title = `Feedback — ${event.name} ${event.year}`
+const description = `We'd love to hear what you thought of ${event.name} ${event.year} — Ireland's public service design conference. Take a moment to share your feedback.`
+const ogDescription = `Share your feedback on ${event.name} ${event.year} — Ireland's public service design conference.`
+const ogImage = 'images/share-cards/idi-sharecard.png'
+
 export const metadata: Metadata = {
-  title: `Feedback — ${event.name} ${event.year}`,
-  description: `We'd love to hear what you thought of ${event.name} ${event.year}. Share your feedback here.`,
+  title,
+  description,
   openGraph: {
-    title: `Feedback — ${event.name} ${event.year}`,
-    description: `We'd love to hear what you thought of ${event.name} ${event.year}. Share your feedback here.`,
-    images: [{ url: 'images/share-cards/idi-sharecard.png', width: 1200, height: 630 }],
+    title,
+    siteName: event.name,
+    description: ogDescription,
+    images: [{ url: ogImage, width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Feedback — ${event.name} ${event.year}`,
-    description: `We'd love to hear what you thought of ${event.name} ${event.year}. Share your feedback here.`,
-    images: ['images/share-cards/idi-sharecard.png'],
+    title,
+    description: ogDescription,
+    images: [ogImage],
   },
 }
 
