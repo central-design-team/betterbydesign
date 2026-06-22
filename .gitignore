@@ -67,3 +67,7 @@ scripts/
 !app/icon.png
 !app/apple-icon.png
 !app/favicon.ico
+
+# allow share cards
+!public/images/share-cards/
+!public/images/share-cards/*.png

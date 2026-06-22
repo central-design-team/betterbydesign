@@ -1,5 +1,11 @@
 # Changes Log
 
+## 2026-06-22 — Feedback page OG metadata fixes
+
+- Meta description lengthened to 148 chars (was too short)
+- OG description shortened to 91 chars (was truncating on mobile)
+- og:site_name added ("Better By Design")
+
 ## 2026-06-22 — Feedback page OG metadata and IDI share card
 
 - Feedback page description updated to remove live conference language
