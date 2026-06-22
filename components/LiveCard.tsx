@@ -11,9 +11,14 @@ interface Props {
 
 export default function LiveCard({ onDismiss }: Props) {
   const [isActuallyLive, setIsActuallyLive] = useState(false)
+  const [isPast, setIsPast] = useState(false)
 
   useEffect(() => {
-    const check = () => setIsActuallyLive(new Date() >= new Date(event.liveStartTime))
+    const check = () => {
+      const now = new Date()
+      setIsActuallyLive(now >= new Date(event.liveStartTime))
+      setIsPast(now > new Date(event.liveEndTime))
+    }
     check()
     const t = setInterval(check, 30_000)
     return () => clearInterval(t)
@@ -50,6 +55,17 @@ export default function LiveCard({ onDismiss }: Props) {
           <>
             <p className="font-semibold text-bbd-black leading-tight text-[15px] sm:text-[13px]">Watch Live</p>
             <p className="mt-1 text-bbd-black/60 leading-snug text-[13px] sm:text-[11px]">Better By Design 2026 is live now.</p>
+            <span className="mt-2 inline-flex items-center gap-1 font-medium text-bbd-black/70 text-[13px] sm:text-[11px]">
+              Watch now
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </span>
+          </>
+        ) : isPast ? (
+          <>
+            <p className="font-semibold text-bbd-black leading-tight text-[15px] sm:text-[13px]">Watch Recording</p>
+            <p className="mt-1 text-bbd-black/60 leading-snug text-[13px] sm:text-[11px]">Better By Design {event.year}</p>
             <span className="mt-2 inline-flex items-center gap-1 font-medium text-bbd-black/70 text-[13px] sm:text-[11px]">
               Watch now
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

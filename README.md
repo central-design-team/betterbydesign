@@ -1,9 +1,6 @@
-# Better By Design 2026
+# Better By Design
 
 **Public Service Design — Conference & Showcase**
-
-Thursday 18 June 2026
-The Lighthouse, Dublin
 
 A Shared Island event delivered by the Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation in partnership with Creative Ireland, and hosted by the Institute of Designers Ireland.
 
@@ -114,25 +111,125 @@ Built with Next.js (static export), deployed to GitHub Pages and served via cust
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:3000
 ```
 
 ### Build
 
 ```bash
-npm run build
+npm run build      # output goes to out/
 ```
 
-Static output is generated to the `out/` directory.
+To preview the static export locally:
 
-### Deploy
-
-Deployment is handled automatically via GitHub Actions on push to `main`. The site is published to GitHub Pages and served via the custom domain `betterbydesign.ie` (no base path).
+```bash
+npx serve out/
+```
 
 ### Image handling
 
 All images live in `public/images/`. Because `next/image` with `unoptimized: true` and `output: 'export'` does not apply `basePath` to image URLs, all image `src` attributes are wrapped with the `img()` helper from `lib/img.ts`, which prefixes the path with `NEXT_PUBLIC_BASE_PATH` at build time.
 
-### Content
+---
 
-All site content is in `content/site.ts`. To update copy, speakers, agenda items or themes, edit that file — no changes to components needed.
+## Updating content for next year
+
+All editable content lives in one file: **`content/site.ts`**. No changes to components are needed for routine updates.
+
+### 1. Event details
+
+At the top of `content/site.ts`:
+
+```ts
+export const event = {
+  name: 'Better By Design',
+  year: '2027',                               // update year
+  date: 'Thursday 19 June 2027',              // update date
+  location: 'The Lighthouse, Dublin',         // update if venue changes
+  ticketsUrl: 'https://...',                  // new Eventbrite URL
+
+  liveStreamUrl: 'https://www.youtube.com/embed/XXXXXXXXX', // new YouTube embed URL
+  liveStartText: '9:30am, Thursday 19 June',  // displayed on the live page
+  liveStartTime: '2027-06-19T09:30:00+01:00', // ISO 8601 — controls when dot appears
+  liveEndTime:   '2027-06-19T18:00:00+01:00', // ISO 8601 — after this, link says "Watch Recording"
+
+  isLive: false, // set to true on the morning of the event only
+}
+```
+
+The "Watch Live" / "Watch Recording" label switches automatically based on `liveEndTime` — no code changes needed after setting the dates.
+
+### 2. Speakers
+
+Each speaker needs an entry in `speakerProfiles`, then appears in one of three lists:
+
+| List | Section |
+|------|---------|
+| `ministers` | Ministers section |
+| `keynotes` | Keynotes section |
+| `panellists` | Panellists section |
+
+**To add a speaker:**
+1. Add their photo to `public/images/` (`.webp`, approx 400×500px, portrait crop)
+2. Add a `speakerProfiles` entry — slug, name, role, organisation, image, bio, linkedin
+3. Add them to the relevant list
+
+Slug format: lowercase with hyphens — e.g. `jane-smith`, `dr-jane-smith`, `prof-jane-smith`
+
+### 3. Agenda
+
+Each agenda item needs `time`, `type`, and `title`. Panel items also take `moderator` (one slug) and `speakers` (array of slugs). Types: `registration`, `welcome`, `address`, `ministerial`, `keynote`, `panel`, `break`, `lunch`, `closing`.
+
+### 4. Themes and descriptions
+
+Update the `themes` array and `themesActionDescription` string.
+
+### 5. Partners and footer
+
+Update `partners.body`, `partnerLogos`, `footerDescription`, and `social` as needed.
+
+---
+
+## On the day: going live
+
+1. Get the YouTube live embed URL (format: `https://www.youtube.com/embed/VIDEO_ID`)
+2. Update `liveStreamUrl` in `content/site.ts`
+3. Set `isLive: true`
+4. Commit and push — site deploys in ~2 minutes
+
+After the event: set `isLive: false` and push. The "Watch Recording" label appears automatically.
+
+---
+
+## Deploying to GitHub Pages
+
+Deployment is fully automated. Every push to `main` triggers `.github/workflows/deploy.yml`, which builds the site and publishes `out/` to GitHub Pages.
+
+### First-time setup for a new repo
+
+1. **Enable GitHub Pages:**
+   - Repo Settings → Pages → Source: **GitHub Actions**
+
+2. **Set the base path** (only if the site lives at a sub-path, e.g. `org.github.io/bbd`):
+   - Repo Settings → Variables → Actions → New repository variable
+   - Name: `NEXT_PUBLIC_BASE_PATH`, Value: `/bbd`
+   - Leave unset if using a custom domain (the current setup uses a custom domain with no base path)
+
+3. **Set the site password** (if password protection is active):
+   - Repo Settings → Secrets and variables → Actions → New repository secret
+   - Name: `SITE_PASSWORD`, Value: the password
+
+4. **Custom domain:**
+   - The `public/CNAME` file already contains `betterbydesign.ie`
+   - In repo Settings → Pages, enter the custom domain and enable "Enforce HTTPS"
+   - With your DNS registrar, add an `A` record pointing to GitHub Pages IPs, or a `CNAME` pointing to `<org>.github.io`
+
+### Triggering a manual deploy
+
+Without pushing code: Actions → Deploy to GitHub Pages → Run workflow → Run workflow
+
+### Checking a deploy
+
+- Progress: Actions tab → latest workflow run
+- Live URL: Repo Settings → Pages
+- Typical build time: 1–2 minutes

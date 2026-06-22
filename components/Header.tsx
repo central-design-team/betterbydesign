@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { navigation, event } from '@/content/site'
+import { navigation, event, getWatchLabel } from '@/content/site'
 import LiveCard from '@/components/LiveCard'
 
 import { lockScroll, unlockScroll } from '@/lib/scroll-lock'
@@ -17,7 +17,7 @@ function WatchLiveLink({ className, style }: { className?: string; style?: React
           <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A432]" />
         </span>
       )}
-      {event.isLive ? 'Watch Live' : 'Live Stream'}
+      {getWatchLabel()}
     </Link>
   )
 }

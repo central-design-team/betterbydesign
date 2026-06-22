@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { event } from '@/content/site'
+import { event, getWatchLabel } from '@/content/site'
 import FluidContainer from '@/components/FluidContainer'
 import BlockCanvas from '@/components/BlockCanvas'
 
@@ -85,7 +85,7 @@ export default function Hero() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00A432]" />
                 </span>
               )}
-              Watch Live
+              {getWatchLabel()}
             </Link>
           </div>
 

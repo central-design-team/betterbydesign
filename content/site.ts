@@ -20,10 +20,11 @@ export const event = {
   // ─── Live stream ───────────────────────────────────────────────
   // Set isLive: true on the morning of the event to switch the site to live mode.
   // Replace liveStreamUrl with the YouTube embed URL for the stream.
-  isLive: true,
+  isLive: false,
   liveStreamUrl: 'https://www.youtube.com/embed/00azxsjlGcs',
   liveStartText: '9:30am, Thursday 18 June',
   liveStartTime: '2026-06-18T09:30:00+01:00',
+  liveEndTime:   '2026-06-18T18:00:00+01:00',
   liveThumbUrl: '/images/live-thumb.webp' as string | null,
 }
 
@@ -569,6 +570,18 @@ export const govSocials = {
   youtube: 'https://www.youtube.com/merrionstreet',
   linkedin: 'https://www.linkedin.com/company/governmentofireland',
   instagram: 'https://www.instagram.com/govie/',
+}
+
+// ─── Watch label ─────────────────────────────────────────────────────────────
+// Returns the correct label for the /live link based on current time.
+// - Before / during (not yet marked live): 'Live Stream'
+// - While isLive is true:                  'Watch Live'
+// - After liveEndTime:                     'Watch Recording'
+
+export function getWatchLabel(): 'Watch Live' | 'Watch Recording' | 'Live Stream' {
+  if (new Date() > new Date(event.liveEndTime)) return 'Watch Recording'
+  if (event.isLive) return 'Watch Live'
+  return 'Live Stream'
 }
 
 export const dperSocials = {
