@@ -32,7 +32,7 @@ export default function LivePage() {
 
       {/* Video area */}
       <main id="main-content" className="flex flex-col page-x pt-5 pb-6 sm:pb-16 gap-6 sm:gap-10">
-        {event.isLive ? (
+        {event.liveStreamUrl ? (
           <div className="relative w-full aspect-video">
             <iframe
               src={event.liveStreamUrl}
